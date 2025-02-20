@@ -1,0 +1,618 @@
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    text-decoration: none;
+    overscroll-behavior: none;
+}
+
+
+/* Hero section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Ensure the video stays in the background */
+}
+
+.hero .hero-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the video covers the area */
+}
+
+.hero::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(1, 1, 3, 1) 4%, rgba(255, 255, 255, 0)) 20%;
+}
+
+.hero .content {
+    max-width: 60rem;
+    position: relative;
+    z-index: 1; /* Ensure the content stays on top of the video */
+}
+
+.hero .content h1 {
+    font-size: 3rem;
+    color: #ffffff;
+    font-weight: 800;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+
+.hero .content p {
+    font-size: 1rem;
+    margin-top: 1rem;
+    line-height: 1.4rem;
+    font-weight: 100;
+     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+    text-align: justify;
+}
+
+.hero .content .cta {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 1.4rem;
+    color: #FFFFFF;
+    background-color: #2699CB;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+}
+
+
+
+
+
+/* About Section */
+.about{
+    padding: 5rem 7% 5rem;
+}
+
+.about .row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.about .row .about-img{
+    flex: 1 1 10rem;
+    padding-bottom: 20px;
+   
+}
+
+.about .row .about-img img{
+    width: 100%;
+    animation: appear linear;
+    animation-timeline:view();
+    animation-range: entry 25% cover 50%;
+    
+}
+
+.about .row .content{
+    flex: 1 1 40rem;
+    padding: 0 3rem;
+
+}
+
+.about .row .content p{
+    color: #000000;
+    line-height: 1.4rem;
+    text-align: justify;
+    max-width: 45rem;
+    font-weight: 200;
+}
+
+.about h2{
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight:800;
+    margin-bottom: 3rem;
+    color: #000000;
+}
+
+
+
+/* Text Box */
+
+
+/* Video Complete Project */
+.video-box {
+    background-color: #000000; /* Warna abu-abu */
+    color: #FFFFFF; /* Warna teks putih */
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: -5px; /* Mengatur jarak antara carousel dan text box */
+}
+
+.video-box h2 {
+    font-size: 2.5rem;
+    font-weight:800;
+}
+
+.video-box  .text-box-video p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0  auto;
+    max-width: 630px; /* Membatasi lebar paragraf */
+}
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.video-grid .video-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width:25rem;
+}
+
+.video-grid .video-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-grid .video-title {
+    position: absolute;
+    top: 20%;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    text-align: left;
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.video-grid .video-item:hover .video-title {
+    opacity: 1; 
+}
+
+.video-grid .video-item:hover video {
+    filter: brightness(0.2); /* Darken the video when hovered */
+}
+
+
+/* Training Package */
+.price{
+    background: #ddd;
+    color: #000000;
+    padding: 10px 20px;
+    margin-top: -5px;
+   text-align: center;
+  
+}
+.price .text-box{
+    align-items: center;
+}
+.price .text-box h2{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    text-shadow: 1px 1px 3px , rgba(255, 255, 255, 0.5);
+} 
+
+
+.price .text-box p{
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0  auto;
+    max-width: 730px; /* Membatasi lebar paragraf */
+    padding-bottom: 0;
+    text-shadow: 1px 1px 3px , rgba(255, 255, 255, 0.5);
+   
+}
+
+
+/* price */
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Pastikan semua kartu memiliki tinggi yang sama */
+    background: #ddd;
+    flex-wrap: wrap;
+    padding-bottom: 60px;
+}
+
+.wrapper .card{
+    width: 400px;
+    display: flex;
+    flex-direction: column; /* Susun elemen dalam satu kolom */
+    justify-content: space-between; /* Buat elemen di dalamnya tersebar dengan baik */
+    height: 480px; /* Tetapkan tinggi yang sama */
+    background-color: #FFFFFF;
+    padding: 40px;
+    margin: 30px 15px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px -1px rgba(0, 0, 0, 0.16),
+    3px 3px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+.wrapper .card h1{
+    margin-bottom: 10px;
+    font-size: 2.4rem;
+    color: black;
+    text-align: left;
+}
+
+
+
+.wrapper .card span{
+    font-size: 12px;
+}
+
+.wrapper .card p{
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    margin:10px 0;
+}
+
+.wrapper .card ul{
+    list-style: none;
+    flex-grow: 1; /* Membantu mendorong tombol ke bawah */
+    padding: 0;
+    margin: 10px 0;
+}
+
+.wrapper .card ul li{
+    line-height: 1.8;
+    color: #444444;
+}
+.wrapper .card ul li i{
+    color: #80b918;
+}
+
+.wrapper .card a{
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #2699CB;
+    color: #2699CB;
+    padding: 10px 10px;
+    font-weight: bold;
+    transition: 0.4s;
+    margin-top: auto; /* Pastikan tombol tetap di bagian bawah */
+}
+
+.wrapper .card a:hover{
+    background-color: #2699CB;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+/* call */
+.call {
+    display: flex;
+    background: #000000;
+    color: #FFFFFF;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    flex-wrap: wrap;
+    
+}
+
+.call .text-line h1{
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.call .button button{
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 50px;
+}
+
+.call .button button:hover{
+    background: #2699CB;
+    color: #FFFFFF;
+}
+
+
+
+/* Shilau Team  */
+.wrapper-team{
+    color: #FFFFFF;
+    background-color: #FFFFFF;
+}
+.wrapper-team .title{
+    text-align: center;   
+}
+
+.wrapper-team .title h1{
+    color: #000000;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-top: 30px;
+}
+.wrapper-team .title h2{
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 40px;
+    text-align:center;
+    margin: 0 400px;
+}
+
+.wrapper-team .title span{
+    width: 100px;
+    height: 6px;
+    background-color: #2699CB;
+    margin:0;
+}
+
+.wrapper-team .card_container{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    overflow-x:auto;
+    max-width: 80%;
+    gap: 10px; 
+    padding: 10px; 
+    scrollbar-width: none; 
+    scroll-behavior:smooth;
+
+
+
+}
+.wrapper-team .card_container::-webkit-scrollbar {
+    height: 8px; /* Tinggi scrollbar */
+    display:none;
+}
+
+.wrapper-team .card_container::-webkit-scrollbar-thumb {
+    background: rgba(67, 52, 109, 0.8); /* Warna scrollbar */
+    border-radius: 4px;
+}
+
+.wrapper-team .card_container::-webkit-scrollbar-thumb:hover {
+    background: rgba(67, 52, 109, 1); /* Warna saat hover */
+}
+.team-navigation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-button {
+    background-color: #2699CB;;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: rgba(67, 52, 109, 1);
+}
+
+/* BATAS */
+
+.wrapper-team .card_container .card{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 5px;
+    overflow: hidden;
+    box-shadow: 0 30px 30px -20px rgba(0, 0, 0, 1)
+                inset 0 0 0 1000px rgba(67, 52, 109, .6);
+    display: flex;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    flex:0 0 auto;
+}
+
+.wrapper-team .card_container .card .imbBx, .imbBx img{
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper-team .card_container .card .content{
+    position:absolute;
+    bottom: -160px;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    transition: bottom 0.01s;
+    transition-delay: 0.2s;
+}
+
+.wrapper-team .card_container .card:hover .content{
+    bottom: 0;
+    transition-delay: 0s;
+}
+.wrapper-team .card_container .card .content .contentBx h3{
+    text-transform: uppercase;
+    color: black;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0 15px;
+    line-height: 1.1em;
+    transition: 0.5s;
+    transition-delay: 0.2s;
+    opacity: 0;
+    transform: translateY(-20px);   
+}
+
+.wrapper-team .card_container .card:hover .content .contentBx h3{
+    opacity: 1;
+    transform: translateY();
+}
+
+
+.wrapper-team .card_container .card .content .contentBx h3 span{
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: initial;
+}
+
+.wrapper-team .card_container .card .content .sci{
+    position: relative;
+    bottom: 10px;
+    display: flex;
+}
+
+.wrapper-team .card_container .card .content .sci li{
+    list-style: none;
+    margin: 0 10px;
+    transform: translateY(40px);
+    transition: 0.5s;
+    opacity: 0;
+    transition-delay: calc(0.2s *var(--i));
+}
+
+.wrapper-team .card_container .card:hover .content .sci li{
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.wrapper-team .card_container .card .content .sci li a{
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+/* Partner */
+
+.container-partner{
+    width: 100%;
+    background: #ddd;
+    height: 100%;
+    margin: 0;
+}
+
+.container-partner  .partner::-webkit-scrollbar{
+    display: none;
+    scrollbar-color: transparent transparent;
+}
+.container-partner .partner{
+    overflow-x: scroll;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    margin: 0 100px;
+}
+.container-partner .partner img{
+    outline:none;
+    border:none;
+}
+/* end partner */
+
+
+@media screen and (max-width: 768px) {
+    .wrapper-team .title h4{
+        color: #000000;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-top: 30px;
+        margin-left: 10px;
+    }
+    
+    .wrapper-team .title span{
+        width: 100px;
+        height: 6px;
+        background-color: #2699CB;
+        display: inline-block;
+        margin-left: 10px;
+    }
+    .wrapper-team .card_container{
+        justify-content: center;
+        margin: 30px 0;
+        padding: 0 5px;
+    }
+
+    .wrapper-team .card_container .card{
+        width: 200px;
+        height: 300px;
+    }
+
+    .wrapper-team .card_container .card .content .contentBx h3{
+        font-size: 15px;
+    }
+
+    .wrapper-team .card_container .card .content .sci li a{
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+}
+
+
+
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }

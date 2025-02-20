@@ -1,0 +1,256 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    overscroll-behavior: none;
+}
+
+/* Upper border */
+
+.text-up{
+    height: 200px;
+    width: 100%;
+    margin-top: 70px;
+    background-color: #2699CB;
+    align-content: center;
+    background-image: url(../img/paper.jpg);
+}
+.text-up h1{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    letter-spacing: 8px;
+    text-shadow: 1px 1px 3px , rgba(1,1,3, 0.5);
+}
+
+
+/* Update News */
+.update-news{
+    background-color: #ddd;
+    padding: 20px;
+    
+}
+.update-news .text-box-news{
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.update-news .text-box-news h2{
+    font-size: 1.4rem;
+    color: #000000;
+
+}
+.update-news .text-box-news span{
+    width: 70px;
+    height: 4px;
+    background-color: #2699CB;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+.left-content {
+    flex: 2;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    margin-top:20px ;
+}
+
+.left-content .news-item h2{
+    color: #000000;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+.left-content .news-item h3{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #292828;
+    margin-bottom: 30px;
+}
+.left-content .news-item img{
+ height: 550px;
+ outline:none;
+ border:none;
+}
+
+.left-content .news-item p{
+    color: #000000;
+    margin-top: 20px;
+    text-indent: 40px;
+    text-align: justify;
+    letter-spacing: 0.5px; 
+    word-spacing: 2px;
+    line-height: 1.8;
+    width: 90%;
+}
+
+
+.right-content {
+    flex: 1;
+    padding: 20px;
+    margin-top:50px ;
+}
+.right-content  .recent-news h3{
+    color: #000000;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+.right-content  .recent-news  li{
+    margin-bottom: 20px;
+}
+
+.right-content  .recent-news  li a{
+    color: #000000;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.right-content  .recent-news  li a:hover{
+    color: #2699CB;
+}
+.right-content  .recent-news  li p{
+    font-size: 0.8rem;
+    color: #292828;
+
+}
+.news-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+.news-item {
+    margin-bottom: 20px;
+}
+.recent-news ul {
+    list-style-type: none;
+    padding: 0;
+}
+.recent-news li {
+    margin-bottom: 10px;
+    width: 80%;
+}
+.recent-news a {
+    text-decoration: none;
+    color: #007BFF;
+}
+.recent-news a:hover {
+    text-decoration: underline;
+}
+
+        
+.pagination {
+    display: flex; /* Mengatur elemen agar segaris */
+    justify-content: center; /* Mengatur elemen berada di tengah */
+    align-items: center; /* Menyelaraskan elemen secara vertikal */
+    gap: 10px; /* Menambahkan jarak antar elemen */
+    margin: 30px 30px 60px;
+    user-select: none;
+    list-style: none; /* Menghapus bullet list bawaan */
+    padding: 0; /* Menghapus padding bawaan */
+}
+
+.pagination li {
+    display: inline-block;
+    padding: 10px 15px; /* Menambah padding untuk ukuran tombol */
+    margin: 0; /* Menghapus margin bawaan */
+    box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+    border-radius: 5px; /* Menambahkan border radius agar lebih menarik */
+}
+
+.pagination .page-link {
+    text-decoration: none; /* Menghapus underline pada link */
+    color: white; /* Mengatur warna teks */
+    display: block; /* Memastikan link mengisi seluruh area */
+}
+
+.previous-page, .next-page {
+    background: #0AB1CE;
+    color: white;
+}
+
+.current-page {
+    background: #007BFF;
+    color: white;
+}
+
+.dots {
+    pointer-events: none; /* Membuat elemen tidak bisa diklik */
+    color: #999;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .text-up{margin: 0;}
+    .text-up h1{font-size: 35px; justify-content: center;}
+
+    .update-news .text-box-news h2{
+        font-size: 20px;
+        color: #000000;
+    
+    }
+
+    .update-news .card-box a .card{
+        border:1px solid #2699CB;
+        width: 200px;
+        height: 150px;
+        background-color: white;
+        margin: 10px;
+    }
+
+    .update-news .card-box a .card img{
+        width: 100%;
+        height: 100px;
+        border-radius: 5px;
+        
+    }
+
+    .update-news .card-box a .card .text-box{
+        margin: 1rem;
+    }
+    .update-news .card-box a .card h2{
+        font-size: 0.5rem;
+        color: #000000;
+        font-weight: 400;
+    }
+    
+    .update-news .card-box a .card p{
+        font-size: 1rem;
+        color: #000000;
+        font-weight: 600;
+    }
+    
+    .update-news .card-box a .card:hover{
+        background-color: #2699CB;
+        color: #FFFFFF;
+    }
+    .update-news .card-box  {
+        text-decoration: none;
+        justify-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+ 
+    
+}
