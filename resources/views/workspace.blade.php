@@ -11,10 +11,11 @@
        <!-- Garis Desain -->
        <div class="absolute top-[-20px] left-[325px] w-[260px] h-[15px] bg-customBlue"></div>
         <div class="absolute top-[-6px] left-[570px] w-[15px] h-[230px] bg-customBlue"></div>
-
+        
     <img class="h-90 w-85 sm:w-[28rem] sm:h-[28rem] flex-shrink-0 object-cover" 
-         src="{{ asset( 'storage/' . $workspace->image) }}" 
-         alt="">
+    src="{{ asset('storage/' . $workspace->image) }}" alt="">
+   
+
 
     <!-- Kotak dengan nama -->
     <div class="absolute  top-1/2 right-20 bg-customBlue  text-white px-8 py-8 rounded-lg">
@@ -47,19 +48,19 @@
     <div class="flex flex-wrap text-center">
       <div class="p-4 md:w-1/3 sm:w-1/2 w-full">
         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-          <h2 class="title-font font-bold text-6xl text-customBlue">200</h2>
+          <h2 class="title-font font-bold text-6xl text-customBlue">{{ ($workspace ['total_rooms']) }}</h2>
           <p class="leading-relaxed text-2xl">Total Room</p>
         </div>
       </div>
       <div class="p-4 md:w-1/3 sm:w-1/2 w-full">
         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-          <h2 class="title-font font-bold text-6xl text-customBlue">100</h2>
+          <h2 class="title-font font-bold text-6xl text-customBlue">{{ ($workspace ['workshop_rooms']) }}</h2>
           <p class="leading-relaxed text-2xl">Workspace Room</p>
         </div>
       </div>
       <div class="p-4 md:w-1/3 sm:w-1/2 w-full">
         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-          <h2 class="title-font font-bold text-6xl text-customBlue">100</h2>
+          <h2 class="title-font font-bold text-6xl text-customBlue">{{ ($workspace ['classrooms']) }}</h2>
           <p class="leading-relaxed text-2xl">Classroom</p>
         </div>
       </div>
@@ -85,13 +86,16 @@
         <div
             class="mx-auto mb-20 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 ">
             <!-- First blog post -->
-
-            <article
-                class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                <img src="https://images.unsplash.com/photo-1666112835156-c65bb806ac73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxNXx8cXVhbnR1bSUyMGNvbXB1dGluZ3xlbnwwfDB8fHwxNzEyNzUzMTk2fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
-            </article>
             
- 
+            @foreach($workspace->images as $image)
+            <article
+            class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+            <img src="{{ asset('storage/' . $image->image) }}" alt="Workspace Image"
+            class="absolute inset-0 -z-10 h-full w-full object-cover">
+            </article>
+            @endforeach
+  
+
             <!-- More blog posts can be added similarly -->
         </div>
     </div>

@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Workspace;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardWorkspaceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('dashboard.workspaces.index', [
@@ -18,85 +16,117 @@ class DashboardWorkspaceController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('dashboard.workspaces.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|unique:workspaces',
-            'image'=> 'image|file|max:5048',
-            'body'=> 'required'
-        ]);
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'slug' => 'required|string|unique:workspaces,slug',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:5048', // Gambar utama
+        'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:5048', // Gambar tambahan
+        'body' => 'required|string',
+        'total_rooms' => 'required|integer|min:0',
+        'workshop_rooms' => 'required|integer|min:0',
+        'classrooms' => 'required|integer|min:0',
+    ]);
 
-        if($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('post-images' , 'public');
-        }
-        Workspace::create($validatedData);
-        return redirect('/dashboard/workspaces')->with('success', 'New post has been added!');
+    $validatedData['body'] = strip_tags($validatedData['body']);
+
+    // Simpan gambar utama jika ada
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('post-images', 'public');
+        $validatedData['image'] = $imagePath;
     }
 
-    /**
-     * Display the specified resource.
-     */
+    $workspace = Workspace::create($validatedData);
+
+    // Simpan gambar tambahan jika ada
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('post-images', $filename, 'public');
+            $workspace->images()->create(['image' => $path]);
+        }
+    }
+
+    return redirect('/dashboard/workspaces')->with('success', 'New workspace has been added!');
+}
+
+
+
     public function show(Workspace $workspace)
     {
-        return view('dashboard.workspaces.show', [
-            'workspace' => $workspace
-        ]);
+        return view('dashboard.workspaces.show', compact('workspace'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Workspace $workspace)
     {
-        return view('dashboard.workspaces.show', [
-            'workspace' => $workspace
-        ]);
+        return view('dashboard.workspaces.edit', compact('workspace'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Workspace $workspace)
-    {
-        $rules = [
-            'title' => 'required|max:255',
-            'slug' => 'required|unique:teams',
-            'image'=> 'image|file|max:5048',
-            'body'=> 'required'
-        ];
-        if($request->slug != $workspace->slug){
-            $rules['slug'] = 'required|unique:workspaces';
-    }
-    $validatedData = $request->validate($rules);
-    Workspace::where('id', $workspace->id)
-    ->update($validatedData);
-    return redirect('/dashboard/workspaces')->with('success', 'Photo has been updated!');
+{
+    $validatedData = $request->validate([
+        'title' => 'required|max:255',
+        'slug' => 'required|unique:workspaces,slug,' . $workspace->id,
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Gambar utama
+        'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:5048', // Gambar tambahan
+        'body' => 'required',
+        'total_rooms' => 'required|integer|min:0',
+        'workshop_rooms' => 'required|integer|min:0',
+        'classrooms' => 'required|integer|min:0',
+    ]);
+
+    $validatedData['body'] = strip_tags($validatedData['body']);
+
+    // Jika ada gambar utama baru, hapus yang lama lalu simpan yang baru
+    if ($request->hasFile('image')) {
+        if ($workspace->image) {
+            Storage::disk('public')->delete($workspace->image);
+        }
+        $validatedData['image'] = $request->file('image')->store('post-images', 'public');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    $workspace->update($validatedData);
+
+    // Hapus gambar lama dan simpan yang baru untuk koleksi gambar tambahan
+    if ($request->hasFile('images')) {
+        foreach ($workspace->images as $oldImage) {
+            Storage::disk('public')->delete($oldImage->image);
+            $oldImage->delete();
+        }
+
+        foreach ($request->file('images') as $image) {
+            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('post-images', $filename, 'public');
+            $workspace->images()->create(['image' => $path]);
+        }
+    }
+
+    return redirect('/dashboard/workspaces')->with('success', 'Workspace has been updated!');
+}
+
+
     public function destroy(Workspace $workspace)
     {
-        Workspace::destroy($workspace->id);
+        if ($workspace->images()->exists()) {
+            foreach ($workspace->images as $image) {
+                Storage::disk('public')->delete($image->image);
+                $image->delete();
+            }
+        }
+        $workspace->delete();
 
-        return redirect('/dashboard/workspaces')->with('success', 'Post has been Delete!');
+        return redirect('/dashboard/workspaces')->with('success', 'Workspace has been deleted!');
     }
+
     public function checkSlug(Request $request)
     {
-         $slug = SlugService::createSlug(Workspace::class, 'slug',  $request->title);
-         return response()->json(['slug' => $slug]);
+        $slug = SlugService::createSlug(Workspace::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

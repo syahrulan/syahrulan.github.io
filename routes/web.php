@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\Training;
 use App\Models\Project;
 use App\Models\Workspace;
+use App\Models\WorkspaceImage;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -79,19 +80,16 @@ Route::get('/business', function () {
     $projects = Project::where('kategori', 'BUSINESS MANAGEMENT')->latest()->get();
     return view('projects.manajemenbisnis', compact('projects'));
 });
-
 // Electrical Engineering
 Route::get('/electrical', function () {
     $projects = Project::where('kategori', 'ELECTRICAL ENGINEERING')->latest()->get();
     return view('projects.electro', compact('projects'));
 });
-
 // Informatics Engineering
 Route::get('/informatics', function () {
     $projects = Project::where('kategori', 'INFORMATICS ENGINEERING')->latest()->get();
     return view('projects.informatika', compact('projects'));
 });
-
 // Mechanical Engineering
 Route::get('/mechanical', function () {
     $projects = Project::where('kategori', 'MECHANICAL ENGINEERING')->latest()->get();

@@ -51,7 +51,7 @@
                 {{  Str::limit($workspace ['title']) }}
                 </th>
                 <td class="p-4">
-                    <img src="{{ asset( 'storage/' . $workspace->image) }}" class="w-16 md:w-32 max-w-full max-h-full" alt="Berita Terkini">
+                <img src="{{ asset('storage/' . $workspace->image) }}" class="w-16 md:w-32 max-w-full max-h-full" alt="Gambar Gedung">
                 </td>
                 <td class="px-6 py-4">
                 {{ Str::limit($workspace ['body']) }}

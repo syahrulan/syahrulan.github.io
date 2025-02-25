@@ -8,17 +8,20 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Workspace extends Model
 {
-    protected $fillable = [ 'title','image','slug','body'];
     use HasFactory, Sluggable;
-    
 
-   
-     
+    protected $fillable = ['title', 'image', 'slug', 'body',  'total_rooms', 'workshop_rooms', 'classrooms'];
+
+    // Relasi One-to-Many ke WorkspaceImage
+    public function images()
+    {
+        return $this->hasMany(WorkspaceImage::class);
+    }
+
     public static function getRecentNews($limit = 5)
     {
         return self::orderBy('created_at', 'desc')->take($limit)->get();
     }
-
 
     public function getRouteKeyName()
     {
@@ -28,9 +31,9 @@ class Workspace extends Model
     public function sluggable(): array
     {
         return [
-            'slug' =>[
-                'source'=> 'title'
+            'slug' => [
+                'source' => 'title'
             ]
-            ];
+        ];
     }
 }
