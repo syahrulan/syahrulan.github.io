@@ -77,6 +77,9 @@
     <!-- Search end section -->
     <div id="posts-container"  >
     <div class="card-box">
+        @if ($trainings->isEmpty())
+            <p class="text-center mt-10 text-black py-28">There is no training at the moment.</p>
+        @endif
         @foreach($trainings as $training)
         <div class="card">
             <img src="{{ asset('storage/' . $training->image) }}" alt="">

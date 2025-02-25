@@ -208,7 +208,7 @@ body {
 .price{
     background: #ddd;
     color: #000000;
-    padding: 10px 20px;
+    padding: 8px 10px;
     margin-top: -5px;
    text-align: center;
   
@@ -250,7 +250,7 @@ body {
     display: flex;
     flex-direction: column; /* Susun elemen dalam satu kolom */
     justify-content: space-between; /* Buat elemen di dalamnya tersebar dengan baik */
-    height: 480px; /* Tetapkan tinggi yang sama */
+    height: 465px; /* Tetapkan tinggi yang sama */
     background-color: #FFFFFF;
     padding: 40px;
     margin: 30px 15px;
