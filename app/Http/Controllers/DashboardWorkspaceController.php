@@ -129,4 +129,40 @@ class DashboardWorkspaceController extends Controller
         $slug = SlugService::createSlug(Workspace::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
     }
+
+
+    public function deleteImage($id)
+{
+    $image = \App\Models\WorkspaceImage::findOrFail($id);
+
+    // Hapus file dari storage
+    Storage::disk('public')->delete($image->image);
+
+    // Hapus dari database
+    $image->delete();
+
+    return back()->with('success', 'Image deleted successfully');
+}
+
+public function storeImage(Request $request, $workspaceId)
+{
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $workspace = Workspace::findOrFail($workspaceId);
+
+    $imagePath = $request->file('image')->store('workspace-images', 'public');
+
+    $workspace->images()->create([
+        'image' => $imagePath,
+    ]);
+
+    return back()->with('success', 'Image added successfully.');
+}
+
+
+
+
+
 }

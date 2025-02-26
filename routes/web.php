@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardTeamController;
 use App\Http\Controllers\DashboardTrainingController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardWorkspaceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ChatbotController;
 
 
@@ -151,6 +152,20 @@ Route::resource('/dashboard/projects', DashboardProjectController::class)->middl
 Route::get('/dashboard/workspaces/checkSlug',[DashboardWorkspaceController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/workspaces', DashboardWorkspaceController::class)->middleware('auth');
 // DASHBOARD END ------------------------------------------------------------------------------------------------------------------------->
+
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+
+Route::get('/dashboard', [ContactController::class, 'index'])->name('dashboard.index');
+Route::delete('/messages/{id}', [ContactController::class, 'destroy'])->name('messages.destroy');
+
+
+Route::delete('/dashboard/workspaces/image/{id}', [DashboardWorkspaceController::class, 'deleteImage'])->name('workspace.image.destroy');
+Route::post('/dashboard/workspaces/{workspace}/image', [DashboardWorkspaceController::class, 'storeImage'])->name('workspace.image.store');
+Route::post('/dashboard/workspaces/{workspace}/update-image', [DashboardWorkspaceController::class, 'updateImage']);
+
 
 Route::post('/chatbot', [ChatbotController::class, 'chat']);
 

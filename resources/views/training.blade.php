@@ -56,7 +56,7 @@
  <x-buttonup></x-buttonup>
 
 <x-footer></x-footer>
-    <script src="JS/script.js"></script>
+<script src="{{ asset('js/script.js') }}" defer></script>
 </body>
 </html>
 

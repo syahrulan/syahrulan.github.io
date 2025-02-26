@@ -85,7 +85,7 @@
                 {!! Str::limit(strip_tags($training->date), 50, '...') !!}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/dashboard/trainings/{{ $training->slug }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-eye"></i></a>
                     <a href="/dashboard/trainings/{{ $training->slug }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-pen-to-square"></i></a>
                     <form action="/dashboard/trainings/{{ $training->slug }}" method="post" class="inline">
                     @method('delete')
