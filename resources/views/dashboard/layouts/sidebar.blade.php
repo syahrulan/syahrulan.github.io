@@ -18,14 +18,33 @@
                <span class="flex-1 ms-3 whitespace-nowrap">My Post</span>
             </a>
          </li>
+
          <li>
-            <a href="/dashboard/videopost" class="flex items-center p-2 text-white-900 rounded-lg dark:text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                  <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-               </svg>
-               <span class="flex-1 ms-3 whitespace-nowrap">Video</span>
-            </a>
+   <div>
+      <button type="button" onclick="toggleDropdown()" class="flex items-center w-full p-2 text-white-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+         <svg class="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 18 18" fill="currentColor">
+            <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Z"/>
+         </svg>
+         <span class="ms-3">Video</span>
+         <svg class="w-4 h-4 ms-auto text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+         </svg>
+      </button>
+      <ul id="dropdown-video" class="hidden pl-11 space-y-2">
+         <li>
+            <a href="/dashboard/videopost" class="block p-2 text-white hover:bg-gray-700 rounded-lg">Upload Video</a>
          </li>
+         <li>
+            <a href="/dashboard/testimoni" class="block p-2 text-white hover:bg-gray-700 rounded-lg">List Video</a>
+         </li>
+      </ul>
+   </div>
+</li>
+
+
+
+
+
          <li>
             <a href="/dashboard/teams" class="flex items-center p-2 text-white-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -34,6 +53,8 @@
                <span class="flex-1 ms-3 whitespace-nowrap">Team Shilau</span>
             </a>
          </li>
+
+         
          <li>
             <a href="/dashboard/trainings" class="flex items-center p-2 text-white-900 rounded-lg dark:text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -71,3 +92,11 @@
       </ul>
    </div>
 </aside>
+
+
+<script>
+   function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown-video');
+      dropdown.classList.toggle('hidden');
+   }
+</script>

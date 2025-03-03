@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Post;
-use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +22,7 @@ class DashboardPostController extends Controller
             'posts' => Post::all()
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

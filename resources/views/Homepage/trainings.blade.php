@@ -362,8 +362,9 @@
     </div>
 
     <div class="video-grid">
+    @foreach ($testimonis as $testimoni)
             <div class="video-item">
-            <a href="#" onclick="openVideo('img/video1.mp4'); return false;">
+            <a href="#" onclick="openVideo('{{ asset('storage/' . $testimoni->video_url) }}'); return false;">
                 <!-- Ganti video dengan gambar thumbnail -->
                 <img src="img/chfi.jpg" alt="Video Thumbnail" />
                 <div class="video-title1 mx-10">
@@ -371,15 +372,7 @@
                 </div>
             </a>
         </div>
-
-        <div class="video-item">
-            <a href="#" onclick="openVideo('img/video1.mp4'); return false;">
-                <video src="img/video1.mp4" ></video>
-                <div class="video-title1 mx-10">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
-        </div>
+        @endforeach
     </div>
 </div>
 

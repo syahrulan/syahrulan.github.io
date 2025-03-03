@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-<form method="post" action="/dashboard/videopost" class="max-w-full" enctype="multipart/form-data">
+<form method="post" action="/dashboard/testimoni" class="max-w-full" enctype="multipart/form-data">
     @csrf
     <div class="mb-5">
         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
@@ -21,13 +21,13 @@
 
     <div class="mb-5">
         <label for="video" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Video</label>
-        <input class="@error('video_path') is-invalid @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:border-none" 
+        <input class="@error('video_url') is-invalid @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:border-none" 
                aria-describedby="user_avatar_help" 
-               id="video_path" 
+               id="video_url" 
                type="file" 
-               name="video_path" 
+               name="video_url" 
                accept="video/*">
-        @error('video_path')
+        @error('video_url')
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
         @enderror
     </div>
@@ -46,7 +46,7 @@
 
 <script>
     document.querySelector('#title').addEventListener('change', function() {
-        fetch('/dashboard/videopost/checkSlug?title=' + this.value)
+        fetch('/dashboard/testimoni/checkSlug?title=' + this.value)
             .then(response => response.json())
             .then(data => document.querySelector('#slug').value = data.slug);
     });
@@ -57,7 +57,7 @@
             console.error(error);
         });
     document.querySelector('#title').addEventListener('change', function() {
-        fetch('/dashboard/videopost/checkSlug?title=' + this.value)
+        fetch('/dashboard/testimoni/checkSlug?title=' + this.value)
             .then(response => response.json())
             .then(data => document.querySelector('#slug').value = data.slug);
     });

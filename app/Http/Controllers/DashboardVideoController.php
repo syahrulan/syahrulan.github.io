@@ -22,9 +22,6 @@ class DashboardVideoController extends Controller
         return view('dashboard.videopost.index', [
             'videos' => Video::all()
         ]);
-        
-  
-   
     }
 
     /**
@@ -50,13 +47,8 @@ class DashboardVideoController extends Controller
 
           // Simpan video
           if ($request->file('video_path')) {
-            $validatedData['video_path'] = $request->file('video_path')->store('video-posts', 'public');
+            $validatedData['video_path'] = $request->file('video_path')->store('post-images', 'public');
         }
-        
-       
-
-        
-
         Video::create($validatedData);
 
         return redirect('/dashboard/videopost')->with('success', 'New post has been added!');
@@ -69,10 +61,10 @@ class DashboardVideoController extends Controller
     public function show(Video $video, )
     {
       
-        dd($video);
-        // return view('dashboard.videopost.show', [
-        //     'video_path' => $video
-        // ]);
+    
+        return view('dashboard.videopost.show', [
+            'video_path' => $video
+        ]);
     }
 
     /**
@@ -119,12 +111,8 @@ class DashboardVideoController extends Controller
      */
     public function destroy(Video $video)
     {
-       // Hapus file video dari storage jika diperlukan
-       Storage::delete('public/' . $video->video_path);
-
        // Hapus record video dari database
        $video->delete();
-   
        return redirect('/dashboard/videopost')->with('success', 'Video has been deleted!');
          
     }

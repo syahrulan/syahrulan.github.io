@@ -19,7 +19,7 @@
         {{ session('success')}}
         </div>
         @endif
-    <a href="/dashboard/videopost/create"><button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fa-solid fa-plus"></i> Create New Post</button></a>
+    <a href="/dashboard/testimoni/create"><button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i class="fa-solid fa-plus"></i> Create New Post</button></a>
       
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-black uppercase bg-customBlue  ">
@@ -42,17 +42,17 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($videos as $video)
+        @foreach ($testimonis as $testimoni)
     <tr class="bg-gray-100 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <td class="w-4 p-4">
             {{ $loop->iteration }}
         </td>
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-            {{ Str::limit($video->title) }}
+            {{ Str::limit($testimoni->title) }}
         </th>
         <td class="p-4">
         <video class="w-32 md:w-64" controls>
-    <source src="{{ asset('storage/' . $video->video_path) }}" type="video/mp4">
+    <source src="{{ asset('storage/' . $testimoni->video_url) }}" type="video/mp4">
 </video>
 
         </td>
@@ -60,9 +60,9 @@
             none
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-            <a href="/dashboard/videopost/{{ $video->slug }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-eye"></i></a>
-            <a href="/dashboard/videopost/{{ $video->slug }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-pen-to-square"></i></a>
-            <form action="/dashboard/videopost/{{ $video->slug }}" method="post" class="inline">
+            <a href="/dashboard/testimoni/{{ $testimoni->slug }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-eye"></i></a>
+            <a href="/dashboard/testimoni/{{ $testimoni->slug }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-pen-to-square"></i></a>
+            <form action="/dashboard/testimoni/{{ $testimoni->slug }}" method="post" class="inline">
                 @method('delete')
                 @csrf
                 <button class="font-medium text-red-600 dark:text-red-500 hover:underline" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></button>

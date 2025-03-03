@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\Training;
 use App\Models\Project;
 use App\Models\Workspace;
+use App\Models\Testimoni;
 use App\Models\WorkspaceImage;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ use App\Http\Controllers\DashboardTeamController;
 use App\Http\Controllers\DashboardTrainingController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardWorkspaceController;
+use App\Http\Controllers\DashboardTestimoniController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ChatbotController;
 
@@ -35,7 +37,8 @@ Route::get('/', function () {
 });
 Route::get('/trainings', function () {
     $trainings = Training::latest()->get(); // Ambil semua data training
-    return view('Homepage.trainings', compact('trainings')); // Kirim data ke view
+    $testimonis =Testimoni::latest()->get();
+    return view('Homepage.trainings', compact('trainings'), compact('testimonis')); // Kirim data ke view
 });
 Route::get('/posts', function () {
     // Start with the base query
@@ -151,6 +154,9 @@ Route::resource('/dashboard/projects', DashboardProjectController::class)->middl
 // WORKSPACES
 Route::get('/dashboard/workspaces/checkSlug',[DashboardWorkspaceController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/workspaces', DashboardWorkspaceController::class)->middleware('auth');
+// TESTIMONI
+Route::get('/dashboard/testimoni/checkSlug',[DashboardTestimoniController::class, 'checkSlug'])->middleware('auth');
+Route::resource('/dashboard/testimoni', DashboardTestimoniController::class)->middleware('auth');
 // DASHBOARD END ------------------------------------------------------------------------------------------------------------------------->
 
 
