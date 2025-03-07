@@ -81,22 +81,22 @@ Route::get('/workspace', function () {
 // PROJECTS PAGE START  ------------------------------------------------------------------------------------------------------------------------->
 // Business Management
 Route::get('/business', function () {
-    $projects = Project::where('kategori', 'BUSINESS MANAGEMENT')->latest()->get();
+    $projects = Project::where('kategori', 'BUSINESS MANAGEMENT')->latest()->paginate(10);
     return view('projects.manajemenbisnis', compact('projects'));
 });
 // Electrical Engineering
 Route::get('/electrical', function () {
-    $projects = Project::where('kategori', 'ELECTRICAL ENGINEERING')->latest()->get();
+    $projects = Project::where('kategori', 'ELECTRICAL ENGINEERING')->latest()->paginate(10);
     return view('projects.electro', compact('projects'));
 });
 // Informatics Engineering
 Route::get('/informatics', function () {
-    $projects = Project::where('kategori', 'INFORMATICS ENGINEERING')->latest()->get();
+    $projects = Project::where('kategori', 'INFORMATICS ENGINEERING')->latest()->paginate(10);
     return view('projects.informatika', compact('projects'));
 });
 // Mechanical Engineering
 Route::get('/mechanical', function () {
-    $projects = Project::where('kategori', 'MECHANICAL ENGINEERING')->latest()->get();
+    $projects = Project::where('kategori', 'MECHANICAL ENGINEERING')->latest()->paginate(10);
     return view('projects.mesin', compact('projects'));
 });
 // PROJECTS PAGE END ------------------------------------------------------------------------------------------------------------------------->

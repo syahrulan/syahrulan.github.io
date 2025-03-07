@@ -28,7 +28,7 @@
     <div id="posts-container">
     <div class="card-box">
         @if ($projects->isEmpty())
-            <p class="text-center mt-10 text-black py-28">Tidak ada proyek untuk Mechanical Engineering saat ini.</p>
+            <p class="text-center mt-10 text-black py-28">There are no projects available for the Mechanical Engineering category at the moment.</p>
         @endif
 
         @foreach ($projects as $project)
@@ -43,10 +43,11 @@
             </a>
         @endforeach
     </div>
-
+    @if (!$projects->isEmpty())
     <div id="pagination" class="pagination  py-8 ">
-  
-   
+    {{ $projects->withQueryString()->fragment('update-news')->links() }}
+    </div>
+    @endif
     </div>
     </div>
     

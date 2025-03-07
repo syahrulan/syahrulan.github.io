@@ -33,7 +33,7 @@
     @foreach(json_decode($training->package, true) as $package)
                                 <h3 class=""><i class="fa-solid fa-square-check"></i> {{ $package }}</h3> <!-- Ambil dari package training -->
                             @endforeach
-    <a href="/training2" class=" font-bold">Daftar Sekarang</a>
+    <a href="#" class=" font-bold">Daftar Sekarang</a>
 </div>
 </div>
 

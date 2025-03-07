@@ -363,27 +363,25 @@
 
     <div class="video-grid">
     @foreach ($testimonis as $testimoni)
-            <div class="video-item">
-            <a href="#" onclick="openVideo('{{ asset('storage/' . $testimoni->video_url) }}'); return false;">
-                <!-- Ganti video dengan gambar thumbnail -->
-                <img src="img/chfi.jpg" alt="Video Thumbnail" />
-                <div class="video-title1 mx-10">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
-        </div>
-        @endforeach
+    <div class="video-item">
+        <a href="#" onclick="openVideo('{{ $testimoni->embed_url }}'); return false;">
+            <!-- Thumbnail Video -->
+            <img src="img/chfi.jpg" alt="Video Thumbnail" />
+            <div class="video-title1 mx-10">
+                <i class="fa-solid fa-play"></i>
+            </div>
+        </a>
+    </div>
+@endforeach
     </div>
 </div>
-
 
 <!-- Modal Video -->
 <div id="videoModal" class="modal" style="display: none;" onclick="closeVideo(event)">
-    <div class="modal-content">
-        <video id="modalVideo" controls></video>
+    <div class="modal-content" id="modalContent">
+        <!-- Iframe akan dimasukkan di sini oleh JavaScript -->
     </div>
 </div>
-
 <style>
 /* Styling Modal */
 .modal {
@@ -419,7 +417,29 @@
  <x-buttonup></x-buttonup>
 
 <x-footer></x-footer>
-    <script src="JS/script.js"></script>
+<script>
+function openVideo(embedUrl) {
+    var modal = document.getElementById("videoModal");
+    var modalContent = document.getElementById("modalContent");
+
+    // Set isi modal ke iframe YouTube
+    modalContent.innerHTML = `<iframe id="modalVideo" width="100%" height="450px" 
+                                src="${embedUrl}" frameborder="0" 
+                                allowfullscreen></iframe>`;
+    
+    modal.style.display = "flex"; // Tampilkan modal
+}
+function closeVideo(event) {
+    var modal = document.getElementById("videoModal");
+    
+    // Cek apakah yang diklik adalah modal (di luar video)
+    if (event.target === modal) {
+        modal.style.display = "none"; 
+        document.getElementById("modalContent").innerHTML = ""; // Hapus iframe saat modal ditutup
+    }
+}
+</script>
+    
   
 </body>
 </html>

@@ -32,5 +32,18 @@ class Testimoni extends Model
         ];
     }
 
-
+    public function getEmbedUrlAttribute()
+    {
+        if (empty($this->video_url)) {
+            return null;
+        }
+    
+        preg_match('/(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/embed\/|.*\/v\/|.*\/watch\?v=|.*\/shorts\/|.*\/user\/.*#p\/.*\/))([\w-]+)/', 
+            $this->video_url, 
+            $matches
+        );
+    
+        return isset($matches[1]) ? "https://www.youtube.com/embed/{$matches[1]}" : null;
+    }
+    
 }

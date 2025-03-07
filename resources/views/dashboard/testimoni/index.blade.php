@@ -50,12 +50,17 @@
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
             {{ Str::limit($testimoni->title) }}
         </th>
+        
         <td class="p-4">
+    @if (Str::contains($testimoni->video_url, 'youtube.com') || Str::contains($testimoni->video_url, 'youtu.be'))
+        <iframe class="w-32 md:w-64" src="{{ $testimoni->getEmbedUrlAttribute() }}" allowfullscreen></iframe>
+    @else
         <video class="w-32 md:w-64" controls>
-    <source src="{{ asset('storage/' . $testimoni->video_url) }}" type="video/mp4">
-</video>
+            <source src="{{ asset('storage/' . $testimoni->video_url) }}" type="video/mp4">
+        </video>
+    @endif
+</td>
 
-        </td>
         <td class="px-6 py-4">
             none
         </td>

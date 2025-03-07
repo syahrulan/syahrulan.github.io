@@ -19,7 +19,20 @@
         @enderror
     </div>
 
+
     <div class="mb-5">
+    <label for="video_url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">YouTube Video URL</label>
+    <input type="url" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" 
+           name="video_url" 
+           id="video_url" 
+           placeholder="https://www.youtube.com/watch?v=..." 
+           required>
+    @error('video_url')
+    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+    @enderror
+</div>
+
+    <!-- <div class="mb-5">
         <label for="video" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Video</label>
         <input class="@error('video_url') is-invalid @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:border-none" 
                aria-describedby="user_avatar_help" 
@@ -30,7 +43,7 @@
         @error('video_url')
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
         @enderror
-    </div>
+    </div> -->
 
     <div class="mb-5">
         <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
