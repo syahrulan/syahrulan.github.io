@@ -74,7 +74,7 @@ class DashboardWorkspaceController extends Controller
         'title' => 'required|max:255',
         'slug' => 'required|unique:workspaces,slug,' . $workspace->id,
         'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Gambar utama
-        'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:5048', // Gambar tambahan
+        'images.*' => 'image|mimes:jpg,jpeg,png,webp', // Gambar tambahan
         'body' => 'required',
         'total_rooms' => 'required|integer|min:0',
         'workshop_rooms' => 'required|integer|min:0',

@@ -14,26 +14,23 @@
 -->
 
 <section
- style="background-image: url('/img/background1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"
-  class="relative  bg-cover bg-center bg-no-repeat"
+  style="background-image: url('/img/2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+  class="relative bg-cover bg-center bg-no-repeat"
 >
-  <div
-    class="absolute inset-0 bg-gray-900/75 sm:bg-transparent sm:from-gray-900/95 sm:to-gray-900/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
-  ></div>
+  <!-- Overlay super gelap -->
+  <div class="absolute inset-0 bg-black opacity-60"></div>
 
   <div
     class="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
   >
     <div class="max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
       <h1 class="text-3xl font-extrabold text-white sm:text-5xl">
-        Let us find your
-
-        <strong class="block font-extrabold text-rose-500"> Forever Home. </strong>
+        PROJECT
+        <strong class="block font-extrabold text-customBlue"> BASE LEARNING </strong>
       </h1>
 
-      <p class="mt-4 text-left text-white sm:text-xl/relaxed">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus
-        numquam ea!
+      <p class="shadow-xl mt-4 text-left text-white sm:text-xl/relaxed">
+      Project-Based Learning (PBL) is a learning method that encourages students to develop skills by solving real-world challenges through research, collaboration, and problem-solving.
       </p>
 
       <div class="mt-8 flex flex-wrap gap-4 text-center">
@@ -43,11 +40,13 @@
         >
           WHAT IS PBL?
         </a>
-
       </div>
     </div>
   </div>
 </section>
+
+
+
 <!-- hero end -->
 
 <!-- workspace start -->
@@ -103,23 +102,47 @@ margin: 0;
         @foreach ($workspaces as $workspace)
         
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<!-- <div class=" max-w-sm mx-5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" src="{{ asset( 'storage/' . $workspace->image) }}" alt="" />
+        <img class="rounded-t-lg h-13 max-h-13 " src="{{ asset( 'storage/' . $workspace->image) }}" alt="" />
     </a>
-    <div class="p-5">
+    <div class="p-5 ">
         <a href="/workspaces/{{$workspace['slug']}}">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ Str::limit($workspace ['title'], 100) }}</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ Str::limit($workspace ['title'], 50) }}</h5>
         </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ Str::limit($workspace ['body'], 1000) }}</p>
-        <a href="/workspace/{{$workspace['slug']}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ Str::limit($workspace ['body'], 100) }}</p>
+        <a href="/workspace/{{$workspace['slug']}}" class=" mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Read more
              <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
         </a>
     </div>
+</div> -->
+<div class="max-w-sm m-5  bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex flex-col h-full">
+    <a href="#">
+        <img class="rounded-t-lg h-40 w-full object-cover" src="{{ asset( 'storage/' . $workspace->image) }}" alt="" />
+    </a>
+    <div class="p-5 flex flex-col flex-grow">
+        <a href="/workspaces/{{$workspace['slug']}}">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {{ Str::limit($workspace['title'], 50) }}
+            </h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 flex-grow">
+            {{ Str::limit($workspace['body'], 100) }}
+        </p>
+        <a href="/workspace/{{$workspace['slug']}}" 
+           class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-auto w-fit">
+            Read more
+            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+    </div>
 </div>
+
+
         @endforeach
     </div>
 

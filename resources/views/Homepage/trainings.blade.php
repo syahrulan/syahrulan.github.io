@@ -15,54 +15,55 @@
 
 
 <div class="relative overflow-hidden bg-white my-10">
-  <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
-    <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-      <div class="sm:max-w-lg">
-        <h1 class="tracking-tight font-600 text-gray-900 sm:text-6xl">Start Training</h1>
-        <p class="mt-4 text-xl text-gray-500">This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care if you live or die.</p>
-      </div>
-      <div>
-        <div class="mt-8">
-          <!-- Decorative image grid -->
-          <div aria-hidden="true" class="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl">
-            <div class="absolute transform sm:top-0 sm:left-1/2 sm:translate-x-8 lg:top-1/2 lg:left-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-              <div class="flex items-center space-x-6 lg:space-x-8">
-                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div class="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                    <img src="img/work1.jpg" alt="" class="size-full object-cover">
-                  </div>
-                  <div class="h-64 w-44 overflow-hidden rounded-lg">
-                    <img src="img/work2.jpg" alt="" class="size-full object-cover">
-                  </div>
-                </div>
-                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div class="h-64 w-44 overflow-hidden rounded-lg">
-                    <img src="img/work1.jpg" alt="" class="size-full object-cover">
-                  </div>
-                  <div class="h-64 w-44 overflow-hidden rounded-lg">
-                    <img src="img/work2.jpg" alt="" class="size-full object-cover">
-                  </div>
-                  <div class="h-64 w-44 overflow-hidden rounded-lg">
-                    <img src="img/work2.jpg" alt="" class="size-full object-cover">
-                  </div>
-                </div>
-                <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div class="h-64 w-44 overflow-hidden rounded-lg">
-                    <img src="img/work1.jpg" alt="" class="size-full object-cover">
-                  </div>
-                  <div class="h-64 w-44 overflow-hidden rounded-lg">
-                    <img src="img/work2.jpg" alt="" class="size-full object-cover">
-                  </div>
-                </div>
-              </div>
+    <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
+        <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
+            <div class="sm:max-w-lg">
+                <h1 class="tracking-tight font-600 text-gray-900 sm:text-6xl">Start Training</h1>
+                <p class="mt-4 text-xl text-gray-500">"Unlock your potential and elevate your career with our exclusive training! Join us now and gain expert knowledge, hands-on experience, and industry-leading skills. Don't miss this opportunity to stay ahead—register today and start your journey to success!"</p>
             </div>
-          </div>
+            <div>
+                <div class="mt-8">
+                    <!-- Decorative image grid -->
+                    <div aria-hidden="true" class="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl">
+                        <div class="absolute transform sm:top-0 sm:left-1/2 sm:translate-x-8 lg:top-1/2 lg:left-1/2 lg:-translate-y-1/2 lg:translate-x-8">
+                            <div class="flex items-center space-x-6 lg:space-x-8">
+                                @php
+                                    // Array manual untuk gambar
+                                    $images = [
+                                        'img/work1.jpg',
+                                        'img/work2.jpg',
+                                        'img/work1.jpg',
+                                        'img/work2.jpg',
+                                        'img/work1.jpg',
+                                        'img/work2.jpg',
+                                        'img/work2.jpg',
+                                    ];
 
-          <a href="#card-box" class="inline-block rounded-md border border-transparent bg-customBlue px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Start training</a>
+                                    // Membagi gambar ke dalam 3 kolom
+                                    $columns = [[], [], []];
+                                    foreach ($images as $index => $image) {
+                                        $columns[$index % 3][] = $image; // Distribusi ke kolom 1, 2, 3
+                                    }
+                                @endphp
+
+                                @foreach ($columns as $column)
+                                    <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                        @foreach ($column as $image)
+                                            <div class="h-64 w-44 overflow-hidden rounded-lg {{ $loop->first && $loop->parent->first ? 'sm:opacity-0 lg:opacity-100' : '' }}">
+                                                <img src="{{ $image }}" alt="" class="size-full object-cover">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#card-box" class="inline-block rounded-md border border-transparent bg-customBlue px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Start training</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <!-- Update News Start -->
@@ -75,25 +76,35 @@
     <div id=" update-news" class="card-content">
    <!-- Search section -->
     <!-- Search end section -->
-    <div id="posts-container"  >
-    <div class="card-box">
-        @if ($trainings->isEmpty())
-            <p class="text-center mt-10 text-black py-28">There is no training at the moment.</p>
-        @endif
-        @foreach($trainings as $training)
-        <div class="card">
-            <img src="{{ asset('storage/' . $training->image) }}" alt="">
-            <div class="text-box">
-            <h2 class="mx-10 font-bold">{{ \Carbon\Carbon::parse($training['date'])->translatedFormat('d F Y') }}</h2>
-            <h3 class="">{{ Str::limit($training ['category'], 100) }}</h3>
-            <p>{{ Str::limit($training ['title'], 100) }}</p>
-             <h1 class="font-bold">Rp. {{ number_format($training['harga'], 0, ',', '.') }},-</h1>
-            <a href="/trainings/{{$training['slug']}}" class="font-bold">Daftar Sekarang</a>
+    <div id="posts-container "  >
+    <div class="card-box flex flex-wrap justify-center">
+    @if ($trainings->isEmpty())
+        <p class="text-center mt-10 text-black py-28">There is no training at the moment.</p>
+    @endif
+    @foreach($trainings as $training)
+        <div class="card w-[360px] h-[500px] bg-white rounded-lg m-2.5 shadow-[10px_10px_10px_-1px_rgba(0,0,0,0.16),3px_3px_10px_-1px_rgba(255,255,255,0.7)] transition-all duration-300 ease-in-out flex flex-col hover:-translate-y-2.5 hover:text-white">
+            <img src="{{ asset('storage/' . $training->image) }}" alt="" class="w-full h-[200px] object-cover rounded-t-lg border-none outline-none">
+            <div class="text-box flex-1 flex flex-col m-2.5">
+                <h2 class="mx-[110px] font-bold text-xs text-white bg-[#d30000] rounded-full text-center my-1.5 py-1.5">
+                    {{ \Carbon\Carbon::parse($training['date'])->translatedFormat('d F Y') }}
+                </h2>
+                <h3 class="text-sm mt-5 text-black truncate">
+                    {{ Str::limit($training['category'], 100) }}
+                </h3>
+                <p class="text-base text-black font-semibold mt-2.5 w-[90%] truncate">
+                    {{ Str::limit($training['title'], 100) }}
+                </p>
+                <h1 class="mt-auto text-[1.6rem] text-green-600 font-bold">
+                    Rp. {{ number_format($training['harga'], 0, ',', '.') }},-
+                </h1>
+                <a href="/trainings/{{$training['slug']}}" 
+                   class="font-bold bg-[#80b918] text-white py-2.5 px-0 rounded-[15px] shadow-[0_4px_6px_rgba(0,0,0,0.2)] transition-all duration-300 ease-in-out mt-auto text-center mb-5 hover:bg-[#55a630] hover:shadow-[0_6px_10px_rgba(0,0,0,0.3)]">
+                    Daftar Sekarang
+                </a>
+            </div>
         </div>
-        </div>
-        @endforeach
-
-    </div>
+    @endforeach
+</div>
 
     <div id="pagination" class="pagination  py-8 ">
   
@@ -417,6 +428,7 @@
  <x-buttonup></x-buttonup>
 
 <x-footer></x-footer>
+<script src="{{ asset('JS/script.js') }}"></script>
 <script>
 function openVideo(embedUrl) {
     var modal = document.getElementById("videoModal");

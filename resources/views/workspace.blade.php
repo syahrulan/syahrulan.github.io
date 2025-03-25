@@ -5,46 +5,23 @@
     <x-navbar></x-navbar>
 
 <!-- Upper border Start -->
-<section class="bg-white dark:bg-gray-900 mt-40">
-    <div class="container flex flex-col items-center px-20  mx-auto xl:flex-row">
-    <div class="relative flex justify-center xl:w-1/2">
-       <!-- Garis Desain -->
-       <div class="absolute  bg-customBlue 
-                          lg:top-[-20px] lg:left-[20.3rem] lg:w-[260px] lg:h-[15px]                   
-                          sm:top-[-10px] sm:left-[90px] sm:w-[200px] sm:h-[10px]  
-                          md:top-[-10px] md:left-[140px] md:w-[200px] md:h-[10px]  "></div>
-                          
-        <div class="absolute  bg-customBlue 
-                            lg:top-[-6px] lg:left-[35.6rem] lg:w-[15px] lg:h-[230px]
-                            sm:top-[0px] sm:left-[280px] sm:w-[10px] sm:h-[150px] 
-                            md:top-[-10px] md:left-[337px] md:w-[10px] md:h-[150px] "></div>
+<section class="bg-white dark:bg-gray-900 mt-40 mx-auto">
+    <div class="container flex flex-col xl:flex-row items-center px-4 md:px-20 mx-auto">
+        <!-- Image Section -->
+        <div class="relative justify-center w-full xl:w-1/2 mb-8 xl:mb-0">
+            <img class="shadow-xl flex-shrink-0 object-cover h-[16rem] md:h-[24rem] w-full md:w-full mx-auto" 
+                 src="{{ asset('storage/' . $workspace->image) }}" 
+                 alt="Workspace Image">
+        </div>
 
-    <img class="flex-shrink-0 object-cover
-                         lg:h-[25rem] lg:w-[28rem] sm:w-[28rem] sm:h-[28rem] md:w-[48rem] md:h-[28rem] " 
-              src   ="{{ asset('storage/' . $workspace->image) }}" alt="">
-
-    <!-- Kotak dengan nama -->
-<div class="absolute bg-customBlue text-white px-8 py-8 rounded-lg 
-            max-w-sm md:max-w-md lg:max-w-lg
-            lg:top-1/2 lg:right-20 
-            md:top-[140px] md:right-[-15px] 
-            sm:top-[150px] sm:right-[-15px]">
-    <p class="text-lg font-semibold">{{ Str::limit($workspace['title'], 100) }}</p>
-</div>
-</div>
-
-        <div class="flex flex-col items-center  xl:items-start xl:w-1/2 ">
-            <h2 class="text-6xl font-bold tracking-tight text-gray-800  dark:text-white">
+        <!-- Text Section -->
+        <div class="flex flex-col items-center xl:items-start w-full xl:w-1/2 px-4">
+            <h2 class="text-3xl md:text-6xl font-bold tracking-tight text-gray-800 dark:text-white text-center xl:text-left">
                 Welcome To Our Workspace
             </h2>
-
-            <p class="block m-w-1 mt-4 text-gray-500 dark:text-gray-300">{{ ($workspace ['body']) }} </p>
-
-            <div class="mt-6 sm:-mx-2">
-              
-
-           
-            </div>
+            <p class="block mt-4 text-gray-500 dark:text-gray-300 text-center xl:text-left">
+                {{ $workspace['body'] }}
+            </p>
         </div>
     </div>
 </section>
@@ -84,25 +61,34 @@
 
  <!-- test -->
 
- <div class="w-full bg-white pb-10">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-8">
-        <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Rooms in the {{ Str::limit($workspace ['title'], 100) }} </h2>
-          
-        </div>
-        <div
-            class="mx-auto mb-20 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 ">
-            <!-- First blog post -->
-            @foreach($workspace->images as $image)
-            <article
-            class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-            <img src="{{ asset('storage/' . $image->image) }}" alt="Workspace Image"
-            class="absolute inset-0 -z-10 h-full w-full object-cover">
-            </article>
-            @endforeach
-        </div>
-    </div>
 
+<!-- END  -->
+
+<div class="w-full bg-white pb-1">
+    <div class="mx-auto max-w-7xl pt-8">
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Rooms in the {{ Str::limit($workspace['title'], 100) }}</h2>
+        </div>
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-6 mx-auto flex flex-wrap">
+                <div class="flex w-full mb-4 flex-wrap">
+                </div>
+                <div class="flex flex-wrap md:-m-2 -m-1">
+                    @foreach($workspace->images as $index => $image)
+                        @if($index % 2 == 0)
+                            <div class="flex flex-wrap w-1/2">
+                        @endif
+                        <div class="md:p-2 p-1 {{ $index % 4 == 2 || $index % 4 == 3 ? 'w-full' : 'w-1/2' }} h-64 md:h-80"> <!-- Tambah tinggi eksplisit -->
+                            <img alt="gallery" class="w-full h-full object-cover object-center block border-none outline-none" src="{{ asset('storage/' . $image->image) }}">
+                        </div>
+                        @if($index % 2 == 1 || $loop->last)
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 <!-- button-up -->
  <x-buttonup></x-buttonup>

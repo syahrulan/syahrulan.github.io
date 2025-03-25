@@ -9,7 +9,7 @@
 
 
 <!-- Hero Section start -->
-<section class="hero" id="home">
+<!-- <section class="hero" id="home">
     <div class="hero-video">
         <video autoplay muted loop>
             <source src="videohome/video2.mp4" type="video/mp4">
@@ -23,7 +23,20 @@
             SHILAU responsible for developing business strategies, marketing and downstreaming the applied research that have been developed on campus as well as facilitating entrepreneurship and start-up companies from students and alumni.</p>
         <a href="#" class="cta">Get Started</a>
     </main>
- </section>
+ </section> -->
+
+ <header class="mt-20">
+    <div class="w-full bg-center bg-cover h-[40rem]" style="background-image: url('/img/1.jpg');">
+        <!-- Meningkatkan opasitas overlay dari 40% menjadi 70% -->
+        <div class="flex items-center justify-center w-full h-full bg-gray-900/70">
+            <div class="text-center">
+                <h1 class="text-3xl font-semibold text-white lg:text-4xl">Downstream Innovation and <span class="text-blue-400">Business  
+                Services</span> Office</h1>
+                <button class="w-full px-10 py-5 mt-12 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">Get Started</button>
+            </div>
+        </div>
+    </div>
+</header>
 
    <!-- Hero Section End -->
 
@@ -33,8 +46,8 @@
         <h2>ABOUT US</h2>
 
         <div class="row">
-            <div class="about-img">
-                <img src="img/image about.jpg" alt="About Us">
+            <div class="about-img ">
+                <img src="img/4.jpg" alt="About Us">
             </div>
             <div class="content">
                 <p>
@@ -56,12 +69,20 @@
             development</p>
     </div>
 
-    <div class="video-grid px-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 p-4 sm:p-5 md:px-20">
     @foreach ($videos as $video)
-        <div class="video-item">
-            <a href="/videos/{{$video['slug']}}">
-                <video src="{{ asset('storage/' . $video->video_path) }}" muted autoplay loop></video>
-                <div class="video-title mx-10 font-bold">{{ $video-> title }}</div>
+        <div class="relative overflow-hidden rounded-lg shadow-md w-full max-w-[25rem] mx-auto">
+            <a href="/videos/{{$video['slug']}}" class="group">
+                <video 
+                    src="{{ asset('storage/' . $video->video_path) }}" 
+                    muted 
+                    autoplay 
+                    loop 
+                    class="w-full h-auto block transition-all duration-300 group-hover:brightness-50"
+                ></video>
+                <div class="absolute top-[20%] left-4 right-4 font-bold text-white text-base sm:text-lg md:text-xl rounded text-left opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                    {{ $video->title }}
+                </div>
             </a>
         </div>
     @endforeach
@@ -82,21 +103,50 @@
 </div>
 </div>
 
-<div class="wrapper">
-    @foreach($trainings as $training)
-    <div class="card">
-        <h1 class="font-bold">Rp. {{ number_format($training['harga'], 0, ',', '.') }}<span>/Person</span></h1>
-        <p>{{ Str::limit($training ['title'], 100) }}</p>
-        <ul>
-        @foreach(json_decode($training->package, true) as $package)
-            <li><i class="fa-solid fa-square-check"></i> {{ $package }}</li>
+<div class="bg-abu">
+    <div class="container px-6 py-8 mx-auto">
+        <div class="flex flex-col items-center justify-center space-y-8 lg:-mx-4 lg:flex-row lg:items-stretch lg:space-y-0">
+            @foreach($trainings as $training)
+            <div class="flex flex-col w-full max-w-sm p-8 space-y-8 text-center bg-white border-2 border-gray-200 rounded-lg lg:mx-4 dark:bg-gray-900 dark:border-gray-700">
+                <!-- Training Title (Fixed Height) -->
+                <div class="flex-shrink-0 h-12 flex items-center justify-center">
+                    <h2 class="inline-flex items-center justify-center px-2 font-semibold tracking-tight text-black uppercase rounded-lg bg-gray-50 dark:bg-gray-700">
+                        {{ Str::limit($training['title'], 100) }}
+                    </h2>
+                </div>
+
+                <!-- Price -->
+                <div class="flex-shrink-0">
+                    <span class="pt-2 text-4xl font-bold text-hijau2 uppercase ">
+                        Rp. {{ number_format($training['harga'], 0, ',', '.') }}
+                    </span>
+                    <span class="text-gray-500 dark:text-gray-400">
+                        /Person
+                    </span>
+                </div>
+
+                <!-- Package List (Left-Aligned) -->
+                <ul class="flex-1 space-y-4 text-left">
+                    @foreach(json_decode($training->package, true) as $package)
+                    <li class="text-gray-500 dark:text-gray-400 flex items-center">
+                        <i class="fa-solid fa-square-check mr-2"></i>{{ $package }}
+                    </li>
+                    @endforeach
+                </ul>
+
+                <!-- More Info Button -->
+                <a href="/trainings/{{$training['slug']}}" 
+                   class="inline-flex items-center justify-center px-4 py-2 font-medium text-white uppercase transition-colors bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none">
+                    More Info
+                </a>
+            </div>
             @endforeach
-        </ul>
-        <a href="/trainings/{{$training['slug']}}">More Info</a>
-    </div>
-    @endforeach
+        </div>
     </div>
 </div>
+
+
+
 <!-- Training Package End -->
 
 <!-- call start -->
@@ -109,10 +159,6 @@
     </div>
 </div>
 <!-- call end -->
-
-
-<!-- Shilau Team Start -->
-<!-- Shilau Team End -->
 
 <!-- shilau team -->
 <div class="bg-white py-20 sm:py-30">

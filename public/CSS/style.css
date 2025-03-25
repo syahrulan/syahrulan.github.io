@@ -163,45 +163,7 @@ body {
     margin: 0  auto;
     max-width: 630px; /* Membatasi lebar paragraf */
 }
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-}
 
-.video-grid .video-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width:25rem;
-}
-
-.video-grid .video-item video {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.video-grid .video-title {
-    position: absolute;
-    top: 20%;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    text-align: left;
-    opacity: 0; 
-    transition: opacity 0.3s ease-in-out; 
-}
-
-.video-grid .video-item:hover .video-title {
-    opacity: 1; 
-}
-
-.video-grid .video-item:hover video {
-    filter: brightness(0.2); /* Darken the video when hovered */
-}
 
 
 /* Training Package */

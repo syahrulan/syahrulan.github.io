@@ -18,6 +18,8 @@ export default {
                 biruu:"#1d82a6",
                 abu:"#DDDD",
                 abuu:"#333",
+                hijau:"#80b918",
+                hijau2:'#55a630;',
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
